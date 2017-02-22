@@ -1,0 +1,50 @@
+<center>
+  <div class="page-header">
+  <h2><%= @vote.question %></h2>
+  </div>
+  <% unless @if_not_selected %>
+  <div class="row">
+  <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+  <h4 style="color:blue"><%= @vote.first_answer %> :   <%= @vote.first_count %></h4>
+  </div>
+  <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+  <h4 style="color:orange"><%= @vote.second_answer %> :   <%= @vote.second_count %></h4>
+  </div>
+  </div>
+</center>
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" style="width: <%= @rate %>%">
+    <%= @rate %>%
+  </div>
+  <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: <%= 100-@rate %>%">
+    <%= 100-@rate %>%
+  </div>
+</div>
+  <% end %>
+<% if @if_not_selected %>
+  <div class="row">
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+      <%= link_to vote_path(:id => @vote.id, :answer => @vote.first_answer) do %>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Vote for <%= @vote.first_answer%>
+        </button>
+      <% end %>
+    </div>
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+      <%= link_to vote_path(:id => @vote.id, :answer => @vote.second_answer) do %>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Vote for <%= @vote.second_answer%>
+        </button>      
+      <% end %>
+  </div>
+<% end %>
+<% if user_signed_in? and current_user.id == @vote.user_id %>
+
+<div>
+  <%= link_to vote_path(@vote), method: :delete, data: {confirm: "Are you sure?"} do %>
+    <button type="button" class="btn btn-default btn-md">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+    </button>
+  <% end %>
+</div>
+<% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyText
+  first_answer: MyText
+  second_answer: MyText
+  first_count: 1
+  second_count: 1
+  user_id: 1
+
+two:
+  question: MyText
+  first_answer: MyText
+  second_answer: MyText
+  first_count: 1
+  second_count: 1
+  user_id: 1

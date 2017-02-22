@@ -1,0 +1,5 @@
+<% @votes.each do |v| %>
+    <%= link_to vote_path(v), {:style=>'text-decoration:none;'} do %>
+      <button type="button" class="list-group-item"><center><h5><%= v.question %></h5></center></button>
+    <% end %>
+<% end %>
