@@ -7,6 +7,7 @@ class VotesController < ApplicationController
   end
 
   def show
+    @user_name = User.find(@vote.user_id).email.split("@").first
     if @vote.first_count==0
       @rate = 0
     elsif @vote.second_count==0
@@ -42,11 +43,19 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
-    if @vote.save
+
+    if @vote.first_answer.empty? or @vote.second_answer.empty? or @vote.question.empty?
+      @vote.destroy
+      render 'new'
+    elsif @vote.first_answer.eql? @vote.second_answer
+      @vote.destroy
+      render 'new'
+    elsif @vote.save
       redirect_to votes_path
     else
       render 'new'
     end
+    
   end
 
   def destroy

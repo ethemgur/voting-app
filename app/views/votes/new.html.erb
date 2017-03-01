@@ -1,6 +1,6 @@
 <%= simple_form_for @vote do |f| %>
-  <%= f.input :question %>
-  <%= f.input :first_answer %>
-  <%= f.input :second_answer %>
+  <%= f.input :question, :required => true %>
+  <%= f.input :first_answer, :required => true %>
+  <%= f.input :second_answer, :required => true %>
   <%= f.button :submit %>
 <% end %>

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+
   devise_for :users
 
   resources :votes
+
+  resources :profiles
   
   root to: 'votes#index'
 
