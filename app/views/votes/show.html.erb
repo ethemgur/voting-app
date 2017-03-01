@@ -39,7 +39,7 @@
       <% end %>
   </div>
 <% end %>
-<% if user_signed_in? and current_user.id == @vote.user_id %>
+<% if user_signed_in? and (current_user.id == @vote.user_id or current_user.username.eql? "admin")  %>
 
 <div>
   <%= link_to vote_path(@vote), method: :delete, data: {confirm: "Are you sure?"} do %>
