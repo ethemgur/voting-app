@@ -7,7 +7,7 @@ class VotesController < ApplicationController
   end
 
   def show
-    @user_name = User.find(@vote.user_id).email.split("@").first
+    @username = User.find(@vote.user_id).username
     if @vote.first_count==0
       @rate = 0
     elsif @vote.second_count==0
