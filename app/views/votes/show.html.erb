@@ -1,7 +1,7 @@
 <center>
   <div class="page-header">
   <h2><%= @vote.question %></h2>
-  <h4>Created by <%= link_to @username, profiles_show_path(:username => @username) %></h4>
+  <h4>Created by <%= link_to @username, profile_path(@vote.user_id) %></h4>
   </div>
   <% unless @if_not_selected %>
   <div class="row">

@@ -3,3 +3,9 @@
       <button type="button" class="list-group-item"><center><h5><%= v.question %></h5></center></button>
     <% end %>
 <% end %>
+
+<% @users.each do |u| %>  
+	<%= link_to profile_path(u.id), {:style=>'text-decoration:none;'} do %>
+      <button type="button" class="list-group-item"><center><h5><%= u.username %></h5></center></button>
+    <% end %> 
+<% end %>

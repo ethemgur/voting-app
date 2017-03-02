@@ -26,6 +26,12 @@
       <ul class="nav navbar-nav">
         <li></li>
       </ul>
+      <!-- Search Form Begins -->
+      <%= form_tag(votes_path, :method => "get", class: "nav navbar-form navbar-right") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "", class: "form-control" %>
+      <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+      <% end %>
+      <!-- Search Form Ends-->
       <ul class="nav navbar-nav navbar-right">
         <li></li>
         

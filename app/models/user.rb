@@ -27,4 +27,12 @@ class User < ApplicationRecord
 	}
 
 	validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+
+	def self.search(search)
+		if search
+		  self.where(['username LIKE ?', "%#{search}%"])
+		else
+			[]
+		end
+	end
 end

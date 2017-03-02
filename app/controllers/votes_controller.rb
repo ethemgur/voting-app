@@ -2,8 +2,10 @@ class VotesController < ApplicationController
 
   before_action :find_params, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:new, :show]
+  after_filter :search
   def index
-    @votes = Vote.order(created_at: :desc).limit(8)
+    @votes = Vote.search(params[:search])
+    @users = User.search(params[:search])
   end
 
   def show
@@ -71,6 +73,13 @@ class VotesController < ApplicationController
   
   def find_params
     @vote = Vote.find(params[:id])  
+  end
+
+  def search
+    unless params[:search].nil? or params[:search].empty?
+      search = params[:search]
+      @votes = Vote.where(:question => search)
+    end
   end
   
 end
