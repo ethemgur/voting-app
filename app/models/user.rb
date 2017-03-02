@@ -30,7 +30,7 @@ class User < ApplicationRecord
 
 	def self.search(search)
 		if search
-		  self.where(['username LIKE ?', "%#{search}%"])
+		  self.where(["LOWER('username')  LIKE ?", "LOWER(%#{search}%)"])
 		else
 			[]
 		end
