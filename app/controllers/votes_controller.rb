@@ -2,10 +2,11 @@ class VotesController < ApplicationController
 
   before_action :find_params, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:new, :show]
-  after_filter :search
+
   def index
-    @votes = Vote.search(params[:search])
-    @users = User.search(params[:search])
+    #@elements = Element.all
+    @elements = Element.search(params[:search])
+    #@elements.each_slice(8).to_a
   end
 
   def show
@@ -54,6 +55,7 @@ class VotesController < ApplicationController
       render 'new'
     elsif @vote.save
       redirect_to votes_path
+      @element = Element.create(:name => @vote.question, :belong => "votes")
     else
       render 'new'
     end

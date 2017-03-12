@@ -1,11 +1,42 @@
-<% @votes.each do |v| %>
+<h1> NEW MODEL "ELEMENT". ELEMENT = USER + VOTE. SEARCH ÇALIŞMIYOR!!! </h1>
+
+<% @elements.each do |e| %>
+
+	<% if e.belong.eql? "votes" %>
+
+		<% v = Vote.find_by(:question => e.name) %>
     <%= link_to vote_path(v), {:style=>'text-decoration:none;'} do %>
       <button type="button" class="list-group-item"><center><h5><%= v.question %></h5></center></button>
     <% end %>
+
+	<% elsif e.belong.eql? "users" %>
+
+		<% u = User.find_by(:username => e.name) %>  
+		<%= link_to profile_path(u.id), {:style=>'text-decoration:none;'} do %>
+	      <button type="button" class="list-group-item"><center><h5><%= u.username %></h5></center></button>
+    <% end %> 
+
+	<% end %>
+
 <% end %>
 
-<% @users.each do |u| %>  
-	<%= link_to profile_path(u.id), {:style=>'text-decoration:none;'} do %>
-      <button type="button" class="list-group-item"><center><h5><%= u.username %></h5></center></button>
-    <% end %> 
+
+<%if false%>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% (0..((@elements.count)/8)).each do |i| %>
+    <li><%= link_to i+1, votes_path((i+1)) %></li>
+    <% end %>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 <% end %>
